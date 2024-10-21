@@ -1,7 +1,7 @@
 // right now chrome is our only options since
 // we haven't installed other drivers
 // and have special settings in support/world.js
-export const browser = 'chrome';
+export const browser = 'edge';
 // run headless (don't show browser)
 export const headless = false;
 // max execution time
