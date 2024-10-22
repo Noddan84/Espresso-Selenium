@@ -1,4 +1,4 @@
-import seleniumWebdriver from 'selenium-webdriver';
+import seleniumWebdriver, { By } from 'selenium-webdriver';
 import { setWorldConstructor, setDefaultTimeout } from '@cucumber/cucumber';
 import { timeout, browser, headless } from '../../config.js';
 import edge from 'selenium-webdriver/edge.js';
