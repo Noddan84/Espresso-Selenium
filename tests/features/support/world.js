@@ -6,14 +6,43 @@ import edge from 'selenium-webdriver/edge.js';
 const options = new edge.Options();
 //headless && options.addArguments('--headless=new');
 
+export const driver = new seleniumWebdriver
+  .Builder()
+  .setEdgeOptions(options)
+  .forBrowser(browser.EDGE)
+  .build();
+
 class CustomWorld {
   constructor() {
-    this.driver = new seleniumWebdriver
-      .Builder()
-      .setEdgeOptions(options)
-      .forBrowser(browser.EDGE)
-      .build();
+    this.driver = driver;
   }
+
+  async get(cssSelector) {
+    return await this.driver.findElement(By.css(cssSelector));
+  }
+
+  async getMany(cssSelector) {
+    return await this.driver.findElements(By.css(cssSelector));
+  }
+
+  async getByXPath(xPath) {
+    return await this.driver.findElement(By.xpath(xPath));
+  }
+
+  async getManyByXPath(xPath) {
+    return await this.driver.findElements(By.xpath(xPath));
+  }
+
+  async getWait(cssSelector, maxTimeToWaitMs = 5000) {
+    return await this.driver.wait(
+      until.elementLocated(By.css(cssSelector)), maxTimeWaitMs);
+  }
+
+  async getByXPathWait(xPath, maxTimeToWaitMs = 5000) {
+    return await this.driver.wait(
+      until.elementLocated(By.xpath(xPath)), maxTimeWaitMs);
+  }
+
 }
 
 setDefaultTimeout(timeout);
