@@ -31,6 +31,6 @@ Then('I should be at the location {string}', async function (location) {
   // TODO: implement step
 });
 
-When('I wait for the event {string} to take place'), async function (event) {
+When('I wait for the event {string} to take place', async function (event) {
   // TODO: implement step
-}
+});
