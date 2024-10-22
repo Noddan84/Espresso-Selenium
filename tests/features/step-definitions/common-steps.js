@@ -27,6 +27,10 @@ Then('my hipster bag should contain {string}', async function (expectedBagConten
   expect(bagContent).to.equal(expectedBagContent);
 });
 
-Then('I should be at the location {string}', async function (a) {
+Then('I should be at the location {string}', async function (location) {
   // TODO: implement step
 });
+
+When('I wait for the event {string} to take place'), async function (event) {
+  // TODO: implement step
+}
