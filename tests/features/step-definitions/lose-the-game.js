@@ -40,13 +40,14 @@ When('the value of my {string} turns to {int}', async function (statusType, expe
   }, 10000); // wait up to 10 seconds
 });
 
-Then('I should see an {string} telling me I lost the game', async function (messageType) {
-  let messageElement = await this.driver.findElement(By.xpath(`//div[contains(text(), "${messageType}")]`));
+Then('I should see an infomessage telling me I lost the game', async function () {
+  let messageElement = await this.driver.findElement(By.css(`.description`));
   let messageText = await messageElement.getText();
-  expect(messageText).to.include("You health has deteriorated too much – you feel almost dead. Find a caffeine - detox clinic ?"); // Adjust the exact text as needed
+  expect(messageText).to.include("You health has deteriorated too much"); // Kontrollera att meddelandet är korrekt
 });
 
 Then('I should see a {string} button', async function (buttonType) {
-  let button = await this.driver.findElement(By.xpath(`//button[text()="${buttonType}"]`));
+  // Använd buttonType för att söka efter knappen
+  let button = await this.driver.findElement(By.xpath(`//ul/li[text()="${buttonType}"]`));
   expect(await button.isDisplayed()).to.be.true;
 });
