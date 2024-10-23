@@ -6,6 +6,10 @@ Given('that I have started the game by navigating to {string}', async function (
   await this.driver.get(url);
 });
 
+Given('that I make the choice to {string}', async function (choice) {
+  
+});
+
 Then('the value of my {string} should be {float}', async function (statusType, expectedNumValue) {
   // translate statusType (Health, Money, Espressos) to cssSelector (.health, .money., .espressoCups)
   let cssSelector = '.' + statusType.toLowerCase();
@@ -16,6 +20,8 @@ Then('the value of my {string} should be {float}', async function (statusType, e
   let element = await this.get(cssSelector);
   let numValue = +(await element.getText());
   // compare value and expected value
+  //await this.driver.manage().setTimeouts({ implicit: 2000 });
+  console.log(numValue);
   expect(numValue).to.equal(expectedNumValue);
 });
 
