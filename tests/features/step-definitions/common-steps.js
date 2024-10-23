@@ -13,7 +13,7 @@ Then('the value of my {string} should be {float}', async function (statusType, e
   // convert the selector so it only grabs the child element .progress
   cssSelector += ' .progress';
   // grab the dom element and the text inside it and conver to a number (using +)
-  let element = await this.get(cssSelector);
+  let element = await this.get(cssSelector);  
   let numValue = +(await element.getText());
   // compare value and expected value
   expect(numValue).to.equal(expectedNumValue);
