@@ -18,7 +18,7 @@ Then('the value of my {string} should decrease', async function (statusType) {
   let initialValue = +(await element.getText());
 
   // Click the "Wait" button repeatedly - seems to take 7 clicks
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 6; i++) {
     let listItem = await this.driver.findElement(By.xpath(`//ul/li[text()="Wait"]`));
     await listItem.click();
     await this.driver.sleep(500); // Wait 500ms after each click
@@ -29,7 +29,7 @@ Then('the value of my {string} should decrease', async function (statusType) {
   expect(updatedValue).to.be.below(initialValue);
 });
 
-Then('when the value of my {string} turns to {float}', async function (statusType, expectedValue) {
+When('the value of my {string} turns to {int}', async function (statusType, expectedValue) {
   let cssSelector = '.' + statusType.toLowerCase() + ' .progress .val';
 
   // Wait until health reaches 0
