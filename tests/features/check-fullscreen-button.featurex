@@ -16,8 +16,8 @@ Feature: Check fullscreen button
     And i should be able to exit full screen with "ESC"
 
   Scenario: the help button works when i go east after north and check the Full screen button
-    Given that I am at the location "Empty street"
-    And that i make the choice to "Go East"
+    Given that i am at the location "Empty street"
+    And that i make the choice to "Go east"
     When i click the "Full screen" button
     Then the game should go fullscreen
     And i should be able to exit full screen with "ESC"
