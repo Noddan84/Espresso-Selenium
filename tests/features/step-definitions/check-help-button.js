@@ -15,11 +15,13 @@ Then('the Help description should disappear', async function () {
   let description = (await element.getText()).trim();
   expect(description).to.not.includes("You're a hipster. And you love iThings and your cool bag.");
 });
-/* 
+/* No duplicate steps, this one already in common-steps.js
 Given('that I make the choice to {string}', async function(a){
   // TODO: implement step
 });
+*/
 
+/* No duplicate steps, this one already in common-steps.js
 Given('that i am at the location {string}', async function(a){
   // TODO: implement step
 }); */
