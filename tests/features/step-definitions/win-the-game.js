@@ -22,7 +22,7 @@ Given('that I make the choice to {string}', async function (choice) {
   // TODO: implement step
 });*/
 
-/* Given('that I am at the location {string}', async function (a) {
+/* Given('that i am at the location {string}', async function (a) {
   // TODO: implement step
 }); */
 
