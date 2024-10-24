@@ -29,9 +29,10 @@ Given('that i am at the location {string}', async function (a) {
 }); */
 
 Then('the game should go fullscreen', async function(){
-  // TODO: implement step
+  let element = await this.driver.findElement(By.css('i'));
+  expect(element).to.not.have.property('::before');
 });
 
-Then('i should be able to exit full screen with {string}', async function(a){
+Then('i should be able to exit full screen with {string}', async function(pressedKey){
   // TODO: implement step
 });
