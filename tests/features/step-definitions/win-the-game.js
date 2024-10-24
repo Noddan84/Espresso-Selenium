@@ -22,9 +22,9 @@ Given('that I make the choice to {string}', async function (choice) {
   // TODO: implement step
 });*/
 
-Given('that I am at the location {string}', async function (a) {
+/* Given('that I am at the location {string}', async function (a) {
   // TODO: implement step
-});
+}); */
 
 /* No duplicate steps, this one already in common-steps.js
 When('I wait for the event {string} to take place', async function (event) {
