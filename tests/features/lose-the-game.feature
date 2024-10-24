@@ -13,6 +13,6 @@ As a user I want to lose the game by spam-click wait-button so my health points 
     Given that I click on "Wait"
     Then the value of my "Health" should decrease
     When the value of my "Health" turns to 0
-    Then I should see an "infomessage" telling me I lost the game
-    And I should see a "play Again" button
+    Then I should see an infomessage telling me I lost the game
+    And I should see a "Play again" button
     
