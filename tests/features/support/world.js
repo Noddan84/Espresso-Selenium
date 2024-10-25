@@ -7,14 +7,14 @@ import chrome from 'selenium-webdriver/chrome.js';
 
 const GITHUB_ACTIONS = process.env['GITHUB_ACTIONS'] === 'true';
 
-const options = new chrome.Options();
+const options = new edge.Options();
 //headless && options.addArguments('--headless=new');
 (headless || GITHUB_ACTIONS) && options.addArguments('--headless=new');
 
 export const driver = new seleniumWebdriver
   .Builder()
   .setEdgeOptions(options)
-  .forBrowser(browser)
+  .forBrowser(browser.EDGE)
   .build();
 
 class CustomWorld {
