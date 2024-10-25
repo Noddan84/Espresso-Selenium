@@ -7,7 +7,7 @@ Given('that I have started the game by navigating to {string}', async function (
 });
 
 Given('that i am at the location {string}', async function (location) {
-  let element = await this.driver.findElements(By.css('.description'));
+  let element = await this.driver.findElement(By.css('.description'));
   let description = (await element.getText()).trim();
   expect(description).to.contains(location);
 });
