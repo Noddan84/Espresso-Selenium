@@ -3,8 +3,11 @@ import { setWorldConstructor, setDefaultTimeout } from '@cucumber/cucumber';
 import { timeout, browser, headless } from '../../config.js';
 import edge from 'selenium-webdriver/edge.js';
 
+const GITHUB_ACTIONS = process.env['GITHUB_ACTIONS'] === 'true';
+
 const options = new edge.Options();
 //headless && options.addArguments('--headless=new');
+(headless || GITHUB_ACTIONS) && options.addArguments('--headless=new');
 
 export const driver = new seleniumWebdriver
   .Builder()
