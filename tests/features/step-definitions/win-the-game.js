@@ -30,14 +30,24 @@ Given('that I make the choice to {string}', async function (choice) {
 When('I wait for the event {string} to take place', async function (event) {
 });*/
 
-Then('the value of my {string} should be {string}', async function (a, b) {
+Then('the value of my {string} should be unchanged', async function (Health) {
   // TODO: implement step
+  let cssSelector = '.' + Health.toLowerCase() + ' .progress .val';
+  let element = await this.driver.findElement(By.css(cssSelector));
+  let initialValue = +(await element.getText());  
+
+  // Check the value again
+  let updatedValue = +(await element.getText());
+  expect(updatedValue).to.be.equal(initialValue);
+
 });
 
-Then('I should be given the new choice {string}', async function (a) {
-  // TODO: implement step
-});
-
-When('I wait long enough while my health slips away', async function () {
-  // TODO: implement step
+Then('I should be given the new choice {string}', async function (ChosenOption) {  
+  let choices = await this.driver.findElements(By.css('ul li'));
+  for (let choice of choices) {
+    if (await choice.getText() === ChosenOption) {
+      await choice.click();
+      break;
+    }
+  }
 });

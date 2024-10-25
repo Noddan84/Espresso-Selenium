@@ -50,8 +50,45 @@ Then('I should be at the location {string}', async function (location) {
   expect(description).to.contains(location);
 });
 
-When('I wait for the event {string} to take place', async function (event) {
+/*When('I wait for the event {string} to take place', async function (event) {
   // TODO: implement step
+  let messageElement = await this.driver.findElement(By.css(`.description`));
+  let messageText = await messageElement.getText();
+  expect(messageText).to.include(event); // Kontrollera att meddelandet är korrekt
+
+});*/
+
+When('I wait for the event {string} to take place', async function (event) {
+  let messageElement = await this.driver.findElement(By.css(`.description`));
+  let messageText;
+
+  // Loop för att klicka på "Wait" tills meddelandet matchar det förväntade
+  let buttons = await this.driver.findElements(By.xpath('//ul/li[text()="Wait"]'));
+
+  while (true) {
+    // Klicka på "Wait" om knappen finns
+    if (buttons.length > 0) {
+      await buttons[0].click();
+      await this.driver.sleep(500); // Vänta en kort stund mellan klick
+
+      // Hämta texten från meddelandet
+      messageText = await messageElement.getText();
+
+      // Kontrollera om texten matchar det förväntade
+      if (messageText.includes(event)) {
+        break; // Avsluta loopen om texten är korrekt
+      }
+
+      // Hämta knapparna igen för att se om det finns fler att klicka på
+      buttons = await this.driver.findElements(By.xpath('//ul/li[text()="Wait"]'));
+    } else {
+      // Om det inte finns fler "Wait"-knappar, bryt loopen
+      break;
+    }
+  }
+
+  // Kontrollera att meddelandet är korrekt
+  expect(messageText).to.include(event);
 });
 
 When('i click the {string} button', async function (buttonName) {
@@ -62,4 +99,38 @@ When('i click the {string} button', async function (buttonName) {
       break;
     }
   }
+});
+
+Then('the value of my {string} should decrease', async function (statusType) {
+  let cssSelector = '.' + statusType.toLowerCase() + ' .progress .val';
+  let element = await this.driver.findElement(By.css(cssSelector));
+  let initialValue = +(await element.getText());
+
+  // Click the "Wait" button repeatedly - seems to take 7 clicks
+  for (let i = 0; i < 6; i++) {
+    let listItem = await this.driver.findElement(By.xpath(`//ul/li[text()="Wait"]`));
+    await listItem.click();
+    await this.driver.sleep(500); // Wait 500ms after each click
+  }
+
+  // Check the value again
+  let updatedValue = +(await element.getText());
+  expect(updatedValue).to.be.below(initialValue);
+});
+
+Then('the value of my {string} should have decreased', async function (statusType) {
+  let cssSelector = '.' + statusType.toLowerCase() + ' .progress .val';
+  let element = await this.driver.findElement(By.css(cssSelector));
+  let initialValue = +(await element.getText());
+
+  // Click the "Wait" button repeatedly
+  for (let i = 0; i < 3; i++) {
+    let listItem = await this.driver.findElement(By.xpath(`//ul/li[text()="Wait"]`));
+    await listItem.click();
+    await this.driver.sleep(500); // Wait 500ms after each click
+  }
+
+  // Check the value again
+  let updatedValue = +(await element.getText());
+  expect(updatedValue).to.be.below(initialValue);
 });
