@@ -1,6 +1,5 @@
-
 import { Given, When, Then } from '@cucumber/cucumber';
-import { By, until, Key } from 'selenium-webdriver';
+import { By, until, Key, logging } from 'selenium-webdriver';
 import { expect } from 'chai';
 
 /* No duplicate steps, this one already in common-steps.js
@@ -29,9 +28,16 @@ Given('that i am at the location {string}', async function (a) {
 }); */
 
 Then('the game should go fullscreen', async function(){
-  // TODO: implement step
+  let element = await this.driver.findElement(By.css('i'));
+  expect(element).to.not.have.property('::before');
 });
 
-Then('i should be able to exit full screen with {string}', async function(a){
-  // TODO: implement step
+When('i press {string}', async function (pressedKey) {
+  console.log(pressedKey);  
+  await this.driver.actions().sendKeys(pressedKey).perform();
+});
+
+Then('i should exit fullscreen', async function(){
+  let element = await this.driver.findElement(By.css('i'));
+  expect(element).to.have.property('::before');
 });
