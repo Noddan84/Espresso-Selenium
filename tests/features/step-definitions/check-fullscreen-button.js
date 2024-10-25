@@ -33,8 +33,9 @@ Then('the game should go fullscreen', async function(){
 });
 
 When('i press {string}', async function (pressedKey) {
-  console.log(pressedKey);  
-  await this.driver.actions().sendKeys(pressedKey).perform();
+  console.log(pressedKey);
+  //let action = new Actions(this.driver);
+  await action.sendKeys(Key.pressedKey).build().perform();
 });
 
 Then('i should exit fullscreen', async function(){
