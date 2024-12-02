@@ -45,6 +45,7 @@ Then('my hipster bag should contain {string}', async function (expectedBagConten
 });
 
 Then('I should be at the location {string}', async function (location) {
+  sleep(500);
   let element = await this.driver.findElement(By.css('.description'));
   let description = (await element.getText()).trim();
   expect(description).to.contains(location);
