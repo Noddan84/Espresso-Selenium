@@ -2,6 +2,8 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import { By, until, Key } from 'selenium-webdriver';
 import { expect } from 'chai';
 
+const sleep = ms => new Promise(res => setTimeout(res, ms));
+
 Given('that I have started the game by navigating to {string}', async function (url) {
   await this.driver.get(url);
 });
