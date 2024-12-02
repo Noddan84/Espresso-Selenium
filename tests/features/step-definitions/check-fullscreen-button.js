@@ -33,7 +33,6 @@ When('i click to go Fullscreen', async function () {
   }
 );
 
-
 Then('the game should go fullscreen', async function(){
   let isFullscreen = await this.driver.executeScript(() => !!document.fullscreenElement);
   expect(isFullscreen).to.be.true;
