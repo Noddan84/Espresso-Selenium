@@ -2,7 +2,7 @@ Feature: Check fullscreen button
   As a user I want to be able to use the fullscreen button from any part of the game
 
   Scenario: The help button works on the first scene
-    Given that I have started the game by navigating to "http://localhost:5500/frontend/"
+    Given that I have started the game by navigating to "http://localhost:5500/"
     Then I should be at the location "outside the Cloud Forest Cafe"
     When i click to go Fullscreen
     Then the game should go fullscreen

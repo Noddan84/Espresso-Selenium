@@ -2,7 +2,7 @@ Feature: Lose the game
 As a user I want to lose the game by spam-click wait-button so my health points goes to 0.
 
   Scenario: At the right place with the right starting values
-    Given that I have started the game by navigating to "http://localhost:5500/frontend/"
+    Given that I have started the game by navigating to "http://localhost:5500/"
     Then the value of my "Health" should be 50
     And the value of my "Money" should be 10
     And the value of my "Espressos" should be 0
