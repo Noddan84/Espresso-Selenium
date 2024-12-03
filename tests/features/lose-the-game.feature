@@ -7,7 +7,7 @@ As a user I want to lose the game by spam-click wait-button so my health points 
     And the value of my "Money" should be 10
     And the value of my "Espressos" should be 0
     And my hipster bag should contain "nothing cool"
-    And I should be at the location "outside the Cloud Forest Cafe"
+    And that i am at the location "outside the cafe"
 
   Scenario: Spam-click wait-button to lose the game
     Given that I click on "Wait"

@@ -4,14 +4,46 @@ import { expect } from 'chai';
 
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
+async function getWhereIAm(world) {
+  // translate images (since less variation in those than in descriptions)
+  // into where i am on the 'map'
+  let imageToLocationMap = {
+    'cloud-forest-cafe': 'outside the cafe',
+    'inside-cafe': 'inside the cafe',
+    'inside-cafe-barista-phone': 'inside the cafe',
+    'street': 'on an empty street',
+    'bar': 'in a crowded bar',
+    'country-side': 'in the country-side',
+    'music-scene': 'at the concert',
+    'dead': 'I died',
+    'win': 'I won',
+    'help': 'looking at the help page'
+  };
+  // check image source
+  let imageSource;
+  // while loop needed since playwright sometimes returns
+  // null as the image source when images changes
+  while (true) {
+    let imageElement = await world.get('main .big-image');
+    imageSource = await imageElement.getAttribute('src');
+    if (imageSource) { break; }
+    await world.sleep(20);
+  }
+  // get the image name from the image source
+  let imageName = imageSource.split('/').slice(-1)[0].split('.')[0];
+  // return the location
+  return imageToLocationMap[imageName];
+}
+
 Given('that I have started the game by navigating to {string}', async function (url) {
   await this.driver.get(url);
 });
 
 Given('that i am at the location {string}', async function (location) {
-  let element = await this.driver.findElement(By.css('.description'));
+  /*let element = await this.driver.findElement(By.css('.description'));
   let description = (await element.getText()).trim();
-  expect(description).to.contains(location);
+  expect(description).to.contains(location);*/
+  expect(await getWhereIAm(this)).to.equal(location);
 });
 
 Given('that I make the choice to {string}', async function (ChosenOption) {
